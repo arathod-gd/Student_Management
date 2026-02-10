@@ -1,0 +1,5 @@
+Name: Bob Marks: [80.0, 90.0] Aggregate: 85.0 Grade: B
+Name: Alice Marks: [80.0, 90.0] Aggregate: 85.0 Grade: B
+Name: Marco Marks: [80.0, 90.0, 100.0] Aggregate: 90.0 Grade: A
+Name: Rocky Marks: [80.0, 80.0, 80.0] Aggregate: 80.0 Grade: B
+Name: Abhi Marks: [88.0, 99.0] Aggregate: 93.5 Grade: A
