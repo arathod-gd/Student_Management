@@ -76,8 +76,7 @@ The application presents a console menu:
 3. Remove Student
 4. Search Student
 5. Display All Students
-6. Save
-7. Exit
+6. Exit
 Select the desired option by entering the corresponding number.
 
 Example Workflow
