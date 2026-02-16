@@ -5,6 +5,7 @@ import org.studentmanagement.service.StudentService;
 import org.studentmanagement.util.StudentRepository;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StudentController {
@@ -43,23 +44,39 @@ public class StudentController {
             return;
         }
 
-        System.out.print("Enter total subjects: ");
-        int subjects = sc.nextInt();
 
-        for (int i = 1; i <= subjects; i++) {
-            System.out.print("Enter marks " + i + ": ");
-            double mark = sc.nextDouble();
+        s.getMarks().clear();
 
+        int subjects = 0;
+        while (true) {
             try {
-                service.addMarks(s, mark);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                i--; // retry same subject
+                System.out.print("Enter total subjects: ");
+                subjects = sc.nextInt();
+                if (subjects <= 0) throw new IllegalArgumentException();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number!");
+                sc.nextLine();
             }
         }
-        sc.nextLine();
 
-        // auto-save
+        for (int i = 1; i <= subjects; i++) {
+            while (true) {
+                try {
+                    System.out.print("Enter marks " + i + ": ");
+                    double mark = sc.nextDouble();
+                    service.addMarks(s, mark);
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter a number!");
+                    sc.nextLine();
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        sc.nextLine();
         StudentRepository.saveStudents(students);
         System.out.println("Marks updated.");
     }
